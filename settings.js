@@ -13,7 +13,8 @@ drupalgap.settings = {
   'title':'DrupalGap',
   
   /* App Front Page */
-  'front':'node/261',
+  'front':'node/404',
+  /*'front':'testimonials',*/
   
   /* Language */
   'language':'und',
@@ -32,9 +33,20 @@ drupalgap.settings = {
   /* Logo */
   'logo':'themes/easystreet3/images/drupalgap.jpg',
   
-  /* Cache - Set to true when publishing app!*/
-  'cache':{
-    'theme_registry':false,
+  /* Cache Performance Settings */
+  cache:{
+    
+    /* Set to true to load the page.tpl.html contents from cache */
+    theme_registry:true,
+    
+    /* Allow entities retrieved from the Drupal server to be cached on the
+       device using local storage.  */
+    entity:{
+      enabled:true, /* Set to true to enable entity local storage caching. */
+      expiration:300 /* Number of seconds before cached copy of entity expires. 
+                       Set to 0 to cache forever, set to 60 for one minute, etc.  */
+    },
+
   },
   
   /* Blocks */
@@ -44,28 +56,39 @@ drupalgap.settings = {
         'header':{}
       },
       'navigation':{
-        /*'user_menu_anonymous':{
-          'roles':{
-            'value':['anonymous user'],
+        'main_menu':{}
+      },
+      'sub_navigation':{
+        'service_history':{
+          'pages':{
+            'value':['node/486', 'node/455', 'node/340', 'node/457', 'node/458', 'node/383'],
             'mode':'include',
           }
         },
-        'user_menu_authenticated':{
-          'roles':{
-            'value':['authenticated user'],
+        'social_advances':{
+          'pages':{
+            'value':['node/488', 'node/977', 'node/978', 'node/979', 'node/980'],
             'mode':'include',
           }
-        }*/
-      },
-      'sub_navigation':{
-        'main_menu':{},
-        'primary_local_tasks':{},
+        },
+        'wartime_advances':{
+          'pages':{
+            'value':['node/279', 'node/487'],
+            'mode':'include',
+          }
+        },
+        'personal_history':{
+          'pages':{
+            'value':['node/936', 'testimonials', 'node/1361'],
+            'mode':'include',
+          }
+        },
       },
       'content':{
         'main':{}
       },
       'footer':{
-        'powered_by':{}
+        'kw60_footer':{}
       },
     },
   },
@@ -79,17 +102,40 @@ drupalgap.settings = {
         {'title':'Wartime Advances','path':'node/279','options':{'attributes':{'data-icon':'info'}}},
         {'title':'Personal History','path':'node/936','options':{'attributes':{'data-icon':'info'}}}
       ],
+      options:{
+        attributes:{'data-theme':'c'}
+      }
     },
-    'user_menu_anonymous':{
+    'service_history':{
       'links':[
-        {'title':'Login','path':'user/login'},
-        {'title':'Register','path':'user/register'},
+        {'title':'Allies','path':'node/486'},
+        {'title':'Army','path':'node/455'},
+        {'title':'Marine Corps','path':'node/340'},
+        {'title':'Navy','path':'node/457'},
+        {'title':'Air Force','path':'node/458'},
+        {'title':'Coast Guard','path':'node/383'},
       ],
     },
-    'user_menu_authenticated':{
+    'social_advances':{
       'links':[
-        {'title':'My Account','path':'user'},
-        {'title':'Logout','path':'user/logout'},
+        {'title':'Women in the Military','path':'node/488'},
+        {'title':'African Americans','path':'node/977'},
+        {'title':'Asian Americans','path':'node/978'},
+        {'title':'Hispanic Americans','path':'node/979'},
+        {'title':'Native Americans','path':'node/980'},
+      ],
+    },
+    'wartime_advances':{
+      'links':[
+        {'title':'Medical','path':'node/279'},
+        {'title':'Technological','path':'node/487'},
+      ],
+    },
+    'personal_history':{
+      'links':[
+        {'title':'Oral Histories','path':'node/936'},
+        {'title':'Testimonials','path':'testimonials'},
+        {'title':'Medal of Honor Videos','path':'node/1361'},
       ],
     },
     /* Region menu links. */
