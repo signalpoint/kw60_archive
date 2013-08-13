@@ -14,7 +14,7 @@ drupalgap.settings = {
   
   /* App Front Page */
   'front':'node/404',
-  /*'front':'testimonials',*/
+  /*'front':'gallery',*/
   
   /* Language */
   'language':'und',
