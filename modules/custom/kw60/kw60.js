@@ -1,4 +1,18 @@
 /**
+ * Implements hook_install().
+ */
+function kw60_install() {
+  try {
+    var css_file_path = drupalgap_get_path('module', 'kw60') +
+                        '/kw60.css';
+    drupalgap_add_css(css_file_path);
+  }
+  catch (error) {
+    alert('kw60_install - ' + error);
+  }
+}
+
+/**
  * Implements hook_menu
  */
 function kw60_menu() {
@@ -8,10 +22,10 @@ function kw60_menu() {
       page_callback:'kw60_testimonials_page',
       pageshow:'kw60_testimonials_pageshow'
     },
-    gallery:{
-      title:'Gallery',
-      page_callback:'kw60_gallery_page',
-      pageshow:'kw60_gallery_pageshow',
+    galleries:{
+      title:'Galleries',
+      page_callback:'kw60_galleries_page',
+      pageshow:'kw60_galleries_pageshow',
       region:{
         name:'footer',
         options:{
@@ -21,7 +35,7 @@ function kw60_menu() {
           }
         },
         pages:{
-          value:['gallery'],
+          value:['galleries'],
           mode:'exclude',
         }
       }
@@ -88,18 +102,18 @@ function kw60_testimonials_pageshow() {
 }
 
 /**
- * Page callback for the gallery page.
+ * Page callback for the galleries page.
  */
-function kw60_gallery_page() {
+function kw60_galleries_page() {
   var content = {
-    /*gallery_listing:{
+    galleries_listing:{
       theme:'jqm_item_list',
       items:[],
       attributes:{
-        id:'gallery_listing_items'
+        id:'galleries_listing_items'
       }
-    },*/
-    gallery_image_title:{
+    },
+    /*gallery_image_title:{
       markup:'<h2 id="gallery_image_title" data-role="header"></h2>'
     },
     gallery_pager_prev:{
@@ -128,7 +142,7 @@ function kw60_gallery_page() {
     },
     gallery_image:{
       markup:'<div id="gallery_image"></div>'
-    },
+    },*/
   };
   return content;
 }
@@ -136,18 +150,24 @@ function kw60_gallery_page() {
 var gallery_images = {};
 var gallery_page_index = 0;
 /**
- * The jQM pageshow callback for the gallery page.
+ * The jQM pageshow callback for the galleries page.
  */
-function kw60_gallery_pageshow() {
+function kw60_galleries_pageshow() {
   try {
     drupalgap.views_datasource.call({
-      'path':'drupalgap/gallery',
+      'path':'drupalgap/galleries',
       'success':function(data) {
+        // Extract the nodes into items, then drop them in the list.
+        var items = [];
         $.each(data.nodes, function(index, object){
-            gallery_images[index] = object.node;
+            var node = object.node;
+            var image = theme('image', {path:node.src});
+            var header = '<h2>' + node.title + '</h2>';
+            var paragraph = '<p>' + node.title + '</p>';
+            items.push(l(image + header + paragraph, 'node/' + node.nid));
         });
-        gallery_image_show(gallery_page_index);
-        
+        drupalgap_item_list_populate("#galleries_listing_items", items);
+        //gallery_image_show(gallery_page_index);
       },
     });
   }
