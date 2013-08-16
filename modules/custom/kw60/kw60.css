@@ -4,3 +4,8 @@
   border: 1px solid black;
 }
 
+.region_sub_navigation h3 {
+  margin: 0em;
+  padding: 1em;
+  text-align: center;
+}

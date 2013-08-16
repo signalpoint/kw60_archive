@@ -28,8 +28,8 @@ drupalgap.settings.clean_urls = false; // Setting to false is recommended.
 drupalgap.settings.title = 'DrupalGap';
  
 // App Front Page
-drupalgap.settings.front = 'node/404';
-//drupalgap.settings.front = 'galleries';
+//drupalgap.settings.front = 'node/404';
+drupalgap.settings.front = 'history';
 //drupalgap.settings.front = 'node/1486';
 
 // Theme
@@ -63,53 +63,6 @@ drupalgap.modules.custom = [
   {'name':'kw60'},
 ];
 
-/****************************************|
- * Blocks - http://drupalgap.org/node/83 |
- ****************************************/
-drupalgap.settings.blocks = {};
-
-// Easy Street 3 Theme Blocks
-drupalgap.settings.blocks.easystreet3 = {
-  header:{
-    header:{}
-  },
-  navigation:{
-    main_menu:{}
-  },
-  sub_navigation:{
-    'service_history':{
-      'pages':{
-        'value':['node/486', 'node/455', 'node/340', 'node/457', 'node/458', 'node/383'],
-        'mode':'include',
-      }
-    },
-    'social_advances':{
-      'pages':{
-        'value':['node/488', 'node/977', 'node/978', 'node/979', 'node/980'],
-        'mode':'include',
-      }
-    },
-    'wartime_advances':{
-      'pages':{
-        'value':['node/279', 'node/487'],
-        'mode':'include',
-      }
-    },
-    'personal_history':{
-      'pages':{
-        'value':['node/936', 'testimonials', 'node/1361'],
-        'mode':'include',
-      }
-    }
-  },
-  content:{
-    main:{}
-  },
-  footer:{
-    kw60_footer:{}
-  }
-};
-
 /***************************************|
  * Menus - http://drupalgap.org/node/85 |
  ***************************************/
@@ -133,17 +86,22 @@ drupalgap.settings.menus['user_menu_authenticated'] = {
 
 // Main Menu
 drupalgap.settings.menus['main_menu'] = {
-  'links':[
+  links:[
+    {'title':'History','path':'history','options':{'attributes':{'data-icon':'arrow-d'}}},
+    {'title':'Photos','path':'galleries','options':{'attributes':{'data-icon':'grid'}}},
+    {'title':'Timeline','path':'','options':{'attributes':{'data-icon':'info'}}},
+    {'title':'Honor','path':'','options':{'attributes':{'data-icon':'star'}}}
+  ]
+};
+
+drupalgap.settings.menus['history'] = {
+  links:[
     {'title':'Service History','path':'node/486','options':{'attributes':{'data-icon':'star'}}},
     {'title':'Social Advances','path':'node/488','options':{'attributes':{'data-icon':'grid'}}},
     {'title':'Wartime Advances','path':'node/279','options':{'attributes':{'data-icon':'info'}}},
     {'title':'Personal History','path':'node/936','options':{'attributes':{'data-icon':'info'}}}
-  ],
-  options:{
-    attributes:{'data-theme':'c'}
-  }
+  ]
 };
-
 drupalgap.settings.menus['service_history'] = {
   'links':[
     {'title':'Allies','path':'node/486'},
@@ -175,6 +133,54 @@ drupalgap.settings.menus['personal_history'] = {
     {'title':'Testimonials','path':'testimonials'},
     {'title':'Medal of Honor Videos','path':'node/1361'},
   ]
+};
+
+/****************************************|
+ * Blocks - http://drupalgap.org/node/83 |
+ ****************************************/
+drupalgap.settings.blocks = {};
+
+// Easy Street 3 Theme Blocks
+drupalgap.settings.blocks.easystreet3 = {
+  header:{
+    header:{}
+  },
+  navigation:{
+    main_menu:{}
+  },
+  sub_navigation:{
+    kw60_sub_nav_header:{},
+    'service_history':{
+      'pages':{
+        'value':['node/486', 'node/455', 'node/340', 'node/457', 'node/458', 'node/383'],
+        'mode':'include',
+      }
+    },
+    'social_advances':{
+      'pages':{
+        'value':['node/488', 'node/977', 'node/978', 'node/979', 'node/980'],
+        'mode':'include',
+      }
+    },
+    'wartime_advances':{
+      'pages':{
+        'value':['node/279', 'node/487'],
+        'mode':'include',
+      }
+    },
+    'personal_history':{
+      'pages':{
+        'value':['node/936', 'testimonials', 'node/1361'],
+        'mode':'include',
+      }
+    }
+  },
+  content:{
+    main:{}
+  },
+  footer:{
+    kw60_footer:{}
+  }
 };
 
 /****************************************************|

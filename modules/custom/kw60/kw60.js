@@ -26,7 +26,7 @@ function kw60_menu() {
       title:'Galleries',
       page_callback:'kw60_galleries_page',
       pageshow:'kw60_galleries_pageshow',
-      region:{
+      /*region:{
         name:'footer',
         options:{
           attributes:{
@@ -38,7 +38,11 @@ function kw60_menu() {
           value:['galleries'],
           mode:'exclude',
         }
-      }
+      }*/
+    },
+    history:{
+      title:'History',
+      page_callback:'kw60_history_page'
     }
   };
   return items;
@@ -49,10 +53,14 @@ function kw60_menu() {
  */
 function kw60_block_info() {
   var blocks = {
-    'kw60_footer':{
-      'delta':'kw60_footer',
-      'module':'kw60',
+    kw60_footer:{
+      delta:'kw60_footer',
+      module:'kw60',
     },
+    kw60_sub_nav_header:{
+      delta:'kw60_sub_nav_header',
+      module:'kw60'
+    }
   };
   return blocks;
 }
@@ -62,6 +70,51 @@ function kw60_block_info() {
 function kw60_block_view(delta) {
   var content = '';
   if (delta == 'kw60_footer') { content = '<h2>60th Anniversary</h2>'; }
+  else if (delta == 'kw60_sub_nav_header') {
+    if (arg(0) == 'node') {
+      switch (arg(1)) {
+        case '486':
+          content = 'Service History';
+          break;
+        case '455':
+        case '340':
+        case '457':
+        case '458':
+        case '383':
+          content = l('Service History', 'node/486');
+          break;
+      }
+      if (content != '') {
+        content = '<h3 data-role="header">' + content + '</h3>';
+      }
+    }
+  }
+  return content;
+}
+
+/**
+ * Page callback for the testimonials page.
+ */
+function kw60_history_page() {
+  /*overview
+  service_history
+  social_advances
+  wartime_advances
+  personal_history*/
+  var content = {
+    history_items:{
+      theme:'jqm_item_list',
+      items:[
+        l('Service History', 'node/486'),
+        l('Social Advances', 'node/488'),
+        l('Wartime Advances', 'node/279'),
+        l('Personal History', 'node/936')
+      ],
+      attributes:{
+        id:'testimonial_listing_items'
+      }
+    }
+  };
   return content;
 }
 
