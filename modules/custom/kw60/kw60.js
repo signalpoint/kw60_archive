@@ -25,24 +25,12 @@ function kw60_menu() {
     galleries:{
       title:'Galleries',
       page_callback:'kw60_galleries_page',
-      pageshow:'kw60_galleries_pageshow',
-      /*region:{
-        name:'footer',
-        options:{
-          attributes:{
-            'data-icon':'star',
-            'class':'ui-btn-left'
-          }
-        },
-        pages:{
-          value:['galleries'],
-          mode:'exclude',
-        }
-      }*/
+      pageshow:'kw60_galleries_pageshow'
     },
     history:{
       title:'History',
-      page_callback:'kw60_history_page'
+      page_callback:'kw60_history_page',
+      pageshow:'kw60_history_pageshow'
     }
   };
   return items;
@@ -74,14 +62,28 @@ function kw60_block_view(delta) {
     if (arg(0) == 'node') {
       switch (arg(1)) {
         case '486':
-          content = 'Service History';
-          break;
         case '455':
         case '340':
         case '457':
         case '458':
         case '383':
-          content = l('Service History', 'node/486');
+          content = 'Service History';
+          break;
+        case '488':
+        case '977':
+        case '978':
+        case '979':
+        case '980':
+          content = 'Social Advances';
+          break;
+        case '279':
+        case '487':
+          content = 'Wartime Advances';
+          break;
+        case '936':
+        case 'testimonials':
+        case '1361':
+          content = 'Personal History';
           break;
       }
       if (content != '') {
@@ -93,14 +95,9 @@ function kw60_block_view(delta) {
 }
 
 /**
- * Page callback for the testimonials page.
+ * Page callback for the history page.
  */
 function kw60_history_page() {
-  /*overview
-  service_history
-  social_advances
-  wartime_advances
-  personal_history*/
   var content = {
     history_items:{
       theme:'jqm_item_list',
@@ -111,11 +108,26 @@ function kw60_history_page() {
         l('Personal History', 'node/936')
       ],
       attributes:{
-        id:'testimonial_listing_items'
+        id:'history_listing_items'
       }
+    },
+    history_node:{
+      markup:'<div id="history_node"></div>'
     }
   };
   return content;
+}
+
+/**
+ * Pageshow callback for the history page.
+ */
+function kw60_history_pageshow() {
+  drupalgap.services.node.retrieve.call({
+      nid:261,
+      success:function(node){
+        $('#history_node').html(node.content);
+      }
+  });
 }
 
 /**
@@ -165,43 +177,11 @@ function kw60_galleries_page() {
       attributes:{
         id:'galleries_listing_items'
       }
-    },
-    /*gallery_image_title:{
-      markup:'<h2 id="gallery_image_title" data-role="header"></h2>'
-    },
-    gallery_pager_prev:{
-      theme:'button',
-      text:'Prev',
-      options:{
-        attributes:{
-          'data-icon':'arrow-l',
-          'data-iconpos':'left',
-          'data-inline':'true',
-          onclick:'javascript:gallery_image_prev();'
-        }
-      }
-    },
-    gallery_pager_next:{
-      theme:'button',
-      text:'Next',
-      options:{
-        attributes:{
-          'data-icon':'arrow-r',
-          'data-iconpos':'right',
-          'data-inline':'true',
-          onclick:'javascript:gallery_image_next();'
-        }
-      }
-    },
-    gallery_image:{
-      markup:'<div id="gallery_image"></div>'
-    },*/
+    }
   };
   return content;
 }
 
-var gallery_images = {};
-var gallery_page_index = 0;
 /**
  * The jQM pageshow callback for the galleries page.
  */
@@ -220,50 +200,9 @@ function kw60_galleries_pageshow() {
             items.push(l(image + header + paragraph, 'node/' + node.nid));
         });
         drupalgap_item_list_populate("#galleries_listing_items", items);
-        //gallery_image_show(gallery_page_index);
       },
     });
   }
   catch (error) { drupalgap_error(error); }
 }
-
-function gallery_image_prev() {
-  gallery_image_show(gallery_page_index-1);
-}
-
-function gallery_image_next() {
-  gallery_image_show(gallery_page_index+1);
-}
-
-/**
- * Given an index in the gallery, this will show the image. Returns false if
- * it fails.
- */
-function gallery_image_show(index) {
-  console.log('gallery_image_show');
-  if (typeof gallery_images[index] === 'undefined') { return false; }
-  var title = 'Image';
-  if (gallery_images[index].title) {
-    title = gallery_images[index].title
-  }
-  var src = false;
-  if (gallery_images[index].src) {
-    src = gallery_images[index].src;
-  }
-  var original = false;
-  if (gallery_images[index].original) {
-    original = gallery_images[index].original;
-  }
-  if (src) {
-    $('#gallery_image_title').html(title);
-    var image = theme('image', {path:src});
-    console.log(image);
-    var link = l(image, original, {InAppBrowser:true});
-    console.log(link);
-    $('#gallery_image').html(link);
-    gallery_page_index = index;
-  }
-}
-
-
 

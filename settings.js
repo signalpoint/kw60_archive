@@ -1,4 +1,5 @@
 /* Specify DrupalGap Mobile Application Settings Here */
+//window.localStorage.clear();
 drupalgap.settings = {};
 
 /***************|
@@ -28,8 +29,8 @@ drupalgap.settings.clean_urls = false; // Setting to false is recommended.
 drupalgap.settings.title = 'DrupalGap';
  
 // App Front Page
-//drupalgap.settings.front = 'node/404';
-drupalgap.settings.front = 'history';
+drupalgap.settings.front = 'node/404';
+//drupalgap.settings.front = 'history';
 //drupalgap.settings.front = 'node/1486';
 
 // Theme
@@ -89,8 +90,8 @@ drupalgap.settings.menus['main_menu'] = {
   links:[
     {'title':'History','path':'history','options':{'attributes':{'data-icon':'arrow-d'}}},
     {'title':'Photos','path':'galleries','options':{'attributes':{'data-icon':'grid'}}},
-    {'title':'Timeline','path':'','options':{'attributes':{'data-icon':'info'}}},
-    {'title':'Honor','path':'','options':{'attributes':{'data-icon':'star'}}}
+    {'title':'Timeline','path':'node/974','options':{'attributes':{'data-icon':'info'}}},
+    {'title':'Honor','path':'node/281','options':{'attributes':{'data-icon':'star'}}}
   ]
 };
 
@@ -146,7 +147,12 @@ drupalgap.settings.blocks.easystreet3 = {
     header:{}
   },
   navigation:{
-    main_menu:{}
+    main_menu:{
+      pages:{
+        value:['node/486', 'node/455', 'node/340', 'node/457', 'node/458', 'node/383'],
+        mode:'exclude'
+      }
+    }
   },
   sub_navigation:{
     kw60_sub_nav_header:{},
@@ -249,7 +255,7 @@ drupalgap.settings.cache.theme_registry = true;
 // Entities - Allow entities retrieved from the Drupal server to be cached on
 //            the mobile device using local storage.
 drupalgap.settings.cache.entity = {
-  enabled:false,   /* Set to true to enable entity local storage caching. */
+  enabled:true,   /* Set to true to enable entity local storage caching. */
   expiration:300 /* Number of seconds before cached copy of entity expires. Set
                      to 0 to cache forever, set to 60 for one minute, etc. */
 };
