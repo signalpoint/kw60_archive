@@ -55,7 +55,7 @@ drupalgap.settings.loading = {
 
 // Contributed Modules - www/app/modules
 drupalgap.modules.contrib = [
-  {'name':'image_path_rewrite'},
+  {'name':'pathauto'},
   {'name':'shadowbox'}
 ];
 
