@@ -17,6 +17,11 @@ function kw60_install() {
  */
 function kw60_menu() {
   var items = {
+    home:{
+      title:'Korean War',
+      page_callback:'kw60_home_page',
+      pageshow:'kw60_home_pageshow'
+    },
     testimonials:{
       title:'Testimonials',
       page_callback:'kw60_testimonials_page',
@@ -92,6 +97,44 @@ function kw60_block_view(delta) {
     }
   }
   return content;
+}
+
+/**
+ * Page callback for the home page.
+ */
+function kw60_home_page() {
+  var content = {
+    home_node:{
+      markup:'<div id="home_node" style="display: none;"></div>'
+    },
+    this_week_in_history:{
+      markup:'<h1 id="this_week_in_history_header" style="display: none;">This Week in History</h1>' +
+        '<div id="this_week_in_history_list"></div>'
+    }
+  };
+  return content;
+}
+
+/**
+ * Pageshow callback for the home page.
+ */
+function kw60_home_pageshow() {
+  drupalgap.services.node.retrieve.call({
+      nid:404,
+      success:function(node){
+        $('#home_node').html(node.content).show('slow');
+      }
+  });
+  drupalgap.views_datasource.call({
+    path:'drupalgap/this_week_in_history',
+    success:function(data) {
+      $('#this_week_in_history_header').show('slow');
+      $.each(data.nodes, function(index, object){
+          var node = object.node;
+          $('#this_week_in_history_list').append('<div><strong>' + node.field_this_week_date + '</strong><p>' + node.body + '</p></div>');
+      });
+    },
+  });
 }
 
 /**

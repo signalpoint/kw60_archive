@@ -1,5 +1,5 @@
 /* Specify DrupalGap Mobile Application Settings Here */
-//window.localStorage.clear();
+window.localStorage.clear();
 drupalgap.settings = {};
 
 /***************|
@@ -29,7 +29,8 @@ drupalgap.settings.clean_urls = false; // Setting to false is recommended.
 drupalgap.settings.title = 'DrupalGap';
  
 // App Front Page
-drupalgap.settings.front = 'node/404';
+drupalgap.settings.front = 'home';
+//drupalgap.settings.front = 'node/404';
 //drupalgap.settings.front = 'history';
 //drupalgap.settings.front = 'node/1486';
 
