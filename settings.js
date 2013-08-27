@@ -56,7 +56,7 @@ drupalgap.settings.loading = {
 
 // Contributed Modules - www/app/modules
 drupalgap.modules.contrib = [
-  {'name':'pathauto'},
+  {'name':'pathfix'},
   {'name':'shadowbox'}
 ];
 
@@ -101,7 +101,7 @@ drupalgap.settings.menus['history'] = {
     {'title':'Service History','path':'node/486','options':{'attributes':{'data-icon':'star'}}},
     {'title':'Social Advances','path':'node/488','options':{'attributes':{'data-icon':'grid'}}},
     {'title':'Wartime Advances','path':'node/279','options':{'attributes':{'data-icon':'info'}}},
-    {'title':'Personal History','path':'node/936','options':{'attributes':{'data-icon':'info'}}}
+    {'title':'Personal History','path':'testimonials','options':{'attributes':{'data-icon':'info'}}}
   ]
 };
 drupalgap.settings.menus['service_history'] = {
@@ -131,7 +131,6 @@ drupalgap.settings.menus['wartime_advances'] = {
 };
 drupalgap.settings.menus['personal_history'] = {
   'links':[
-    {'title':'Oral Histories','path':'node/936'},
     {'title':'Testimonials','path':'testimonials'},
     {'title':'Medal of Honor Videos','path':'node/1361'},
   ]

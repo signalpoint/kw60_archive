@@ -148,7 +148,7 @@ function kw60_history_page() {
         l('Service History', 'node/486'),
         l('Social Advances', 'node/488'),
         l('Wartime Advances', 'node/279'),
-        l('Personal History', 'node/936')
+        l('Personal History', 'testimonials')
       ],
       attributes:{
         id:'history_listing_items'
