@@ -9,3 +9,8 @@
   padding: 1em;
   text-align: center;
 }
+
+.drupalgap-nodisplay {
+  display: none;
+}
+

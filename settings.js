@@ -1,5 +1,5 @@
 /* Specify DrupalGap Mobile Application Settings Here */
-window.localStorage.clear();
+//window.localStorage.clear();
 drupalgap.settings = {};
 
 /***************|
