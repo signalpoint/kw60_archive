@@ -60,4 +60,22 @@
     #tabs10 a:hover span {
       background-position:100% -42px;
       }
-      
+
+#timeline tr, #timeline td {
+  padding: 3px !important;
+}
+
+tr td {
+  border-top: 1px solid #AFC0CE;
+  border-right: 1px solid #AFC0CE;
+}
+
+tr.time-phase, tr#time-header {
+  background-color: #404040 !important;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
