@@ -30,9 +30,6 @@ drupalgap.settings.title = 'DrupalGap';
  
 // App Front Page
 drupalgap.settings.front = 'home';
-//drupalgap.settings.front = 'node/404';
-//drupalgap.settings.front = 'history';
-//drupalgap.settings.front = 'node/1486';
 
 // Theme
 drupalgap.settings.theme = 'easystreet3';
@@ -256,7 +253,7 @@ drupalgap.settings.cache.theme_registry = true;
 //            the mobile device using local storage.
 drupalgap.settings.cache.entity = {
   enabled:true,   /* Set to true to enable entity local storage caching. */
-  expiration:300 /* Number of seconds before cached copy of entity expires. Set
+  expiration:86400 /* Number of seconds before cached copy of entity expires. Set
                      to 0 to cache forever, set to 60 for one minute, etc. */
 };
 
